@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PT. NETSOLUSI TEKNOLOGI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a1f2f;
+      color: #e0f7fa;
+      overflow-x: hidden;
+    }
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #022f44cc;
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #00e5ff;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li {
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    nav ul li:hover {
+      color: #00e5ff;
+    }
+    nav ul li.active {
+      color: #00bfff;
+      font-weight: 700;
+      text-shadow: 0 0 8px #00bfff;
+      transition: color 0.3s ease;
+    }
+    main {
+      padding-top: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 4rem 2rem;
+      border-bottom: 1px solid #004d66;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h1, h2 {
+      color: #00e5ff;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px #00e5ff;
+    }
+    p {
+      max-width: 700px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      color: #b2ebf2;
+      text-align: center;
+    }
+    /* Hero */
+    #hero {
+      background: radial-gradient(circle at center, #004d66, #001f2f);
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    #hero .robot-img {
+      width: 250px;
+      max-width: 80vw;
+      margin: 2rem auto 0 auto;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px #00e5ff);
+    }
+    /* Buttons */
+    .btn {
+      background: #00e5ff;
+      color: #001f2f;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00e5ff;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+      user-select: none;
+    }
+    .btn:hover {
+      background: #00bcd4;
+      box-shadow: 0 0 25px #00bcd4;
+    }
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Project Cards */
+    .project-card:hover, .news-card:hover, .job-listing:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+    }
+
+    /* Testimonial Slider */
+    .testimonial-slider {
+      overflow: hidden;
+    }
+
+    /* Footer */
+    footer {
+      background: #022f44;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #00e5ff;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-links a {
+      color: #00e5ff;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #00bcd4;
+    }
+
+    /* Scroll Animations */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1rem;
+      }
+      .logo {
+        font-size: 1.2rem;
+      }
+      section {
+        padding: 3rem 1rem;
+      }
+      .social-links {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PT. NETSOLUSI TEKNOLOGI</div>
+    <nav>
+      <ul>
+        <li><a href="#hero" data-target="hero">Home</a></li>
+        <li><a href="#about" data-target="about">Tentang</a></li>
+        <li><a href="#vision" data-target="vision">Visi & Misi</a></li>
+        <li><a href="#services" data-target="services">Layanan</a></li>
+        <li><a href="#portfolio" data-target="portfolio">Portofolio</a></li>
+        <li><a href="#testimonials" data-target="testimonials">Testimoni</a></li>
+        <li><a href="#news" data-target="news">Berita</a></li>
+        <li><a href="#career" data-target="career">Karir</a></li>
+        <li><a href="#contact" data-target="contact">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="hero" class="active">
+      <h1>PT. NETSOLUSI TEKNOLOGI</h1>
+      <p>Solusi Jaringan dan Infrastruktur IT Terpercaya</p>
+      <!-- Inline SVG robot image -->
+      <svg class="robot-img" width="250" height="250" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 2rem auto 0 auto; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 0 10px #00e5ff);">
+        <rect x="14" y="20" width="36" height="28" rx="6" ry="6" fill="#00bcd4" stroke="#00e5ff" stroke-width="2"/>
+        <circle cx="22" cy="30" r="4" fill="#001f2f" stroke="#00e5ff" stroke-width="1.5"/>
+        <circle cx="42" cy="30" r="4" fill="#001f2f" stroke="#00e5ff" stroke-width="1.5"/>
+        <rect x="26" y="38" width="12" height="6" rx="2" ry="2" fill="#001f2f" stroke="#00e5ff" stroke-width="1.5"/>
+        <rect x="28" y="44" width="8" height="4" fill="#00e5ff" />
+        <rect x="18" y="12" width="28" height="8" rx="4" ry="4" fill="#00bcd4" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="20" y1="16" x2="44" y2="16" stroke="#00e5ff" stroke-width="1" stroke-dasharray="4 2"/>
+        <rect x="28" y="4" width="8" height="8" rx="2" ry="2" fill="#00bcd4" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="32" y1="0" x2="32" y2="4" stroke="#00e5ff" stroke-width="2"/>
+      </svg>
+      <button class="btn" id="learnMoreBtn">Pelajari Lebih Lanjut</button>
+    </section>
+    <section id="about">
+      <h2>Tentang Perusahaan</h2>
+      <p>PT. NETSOLUSI TEKNOLOGI adalah perusahaan teknologi terkemuka yang didirikan pada tahun 2015 dengan visi untuk menjadi pemimpin dalam solusi jaringan dan infrastruktur IT di Indonesia. Kami menyediakan layanan end-to-end yang mencakup desain, implementasi, dan maintenance sistem IT untuk berbagai skala bisnis, dari startup hingga korporasi besar.</p>
+      <p><strong>CEO:</strong> Fadli Apriandi, seorang ahli teknologi dengan pengalaman lebih dari 15 tahun di industri IT. Beliau memimpin tim profesional yang terdiri dari insinyur jaringan, spesialis keamanan siber, dan konsultan teknologi yang berkomitmen untuk memberikan solusi terbaik bagi klien kami.</p>
+      <p>Kami telah melayani lebih dari 500 klien di berbagai sektor, termasuk perbankan, manufaktur, kesehatan, dan pendidikan. Dengan pendekatan inovatif dan fokus pada keamanan serta efisiensi, PT. NETSOLUSI TEKNOLOGI terus berkembang untuk memenuhi tantangan teknologi masa depan.</p>
+    </section>
+    <section id="vision">
+      <h2>Visi & Misi</h2>
+      <p><strong>Visi:</strong> Menjadi perusahaan teknologi terdepan yang menghubungkan masa depan dengan solusi inovatif. Kami berkomitmen untuk menjadi pionir dalam transformasi digital, memanfaatkan teknologi terkini untuk menciptakan dunia yang lebih terhubung dan efisien.</p>
+      <p><strong>Misi:</strong> Memberikan layanan terbaik dengan teknologi mutakhir untuk mendukung kemajuan bisnis klien kami. Kami fokus pada inovasi berkelanjutan, keamanan data, dan pengembangan solusi yang dapat disesuaikan dengan kebutuhan spesifik setiap klien, memastikan pertumbuhan dan kesuksesan jangka panjang.</p>
+      <p>Kami juga berkomitmen untuk berkontribusi pada masyarakat melalui pendidikan teknologi dan pengembangan talenta lokal, serta menjaga keberlanjutan lingkungan dalam semua operasi kami.</p>
+    </section>
+    <section id="services">
+      <h2>Layanan Kami</h2>
+      <p>Kami menawarkan berbagai layanan IT komprehensif yang dirancang untuk memenuhi kebutuhan bisnis Anda:</p>
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00e5ff; font-size: 1.3rem; margin-bottom: 0.5rem;">Desain dan Implementasi Jaringan</h3>
+          <p>Kami merancang dan mengimplementasikan jaringan yang handal dan scalable, termasuk LAN, WAN, dan Wi-Fi enterprise, dengan fokus pada performa tinggi dan keamanan.</p>
+        </div>
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00e5ff; font-size: 1.3rem; margin-bottom: 0.5rem;">Manajemen Infrastruktur IT</h3>
+          <p>Layanan manajemen infrastruktur lengkap termasuk server, storage, dan virtualisasi, dengan monitoring 24/7 untuk memastikan uptime maksimal.</p>
+        </div>
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00e5ff; font-size: 1.3rem; margin-bottom: 0.5rem;">Keamanan Jaringan dan Data</h3>
+          <p>Proteksi komprehensif terhadap ancaman siber dengan firewall, antivirus, enkripsi data, dan audit keamanan reguler untuk melindungi aset digital Anda.</p>
+        </div>
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00e5ff; font-size: 1.3rem; margin-bottom: 0.5rem;">Konsultasi Teknologi</h3>
+          <p>Konsultasi strategis untuk transformasi digital, migrasi cloud, dan optimasi proses bisnis dengan teknologi terkini seperti AI dan IoT.</p>
+        </div>
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00e5ff; font-size: 1.3rem; margin-bottom: 0.5rem;">Support dan Maintenance 24/7</h3>
+          <p>Dukungan teknis nonstop dengan SLA yang ketat, termasuk troubleshooting, update sistem, dan backup data untuk meminimalkan downtime.</p>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio">
+      <h2>Portofolio Proyek</h2>
+      <p>Beberapa proyek unggulan yang telah kami selesaikan untuk klien kami.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+        <div class="project-card" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Implementasi Jaringan Enterprise</h3>
+          <p>Desain dan implementasi jaringan LAN/WAN untuk perusahaan manufaktur dengan 500+ pengguna.</p>
+          <p style="font-size: 0.9rem; color: #80deea;">Teknologi: Cisco, VMware, Fortinet</p>
+        </div>
+        <div class="project-card" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Sistem Keamanan Cloud</h3>
+          <p>Migrasi infrastruktur ke cloud dengan keamanan tingkat enterprise untuk bank nasional.</p>
+          <p style="font-size: 0.9rem; color: #80deea;">Teknologi: AWS, Azure, SIEM</p>
+        </div>
+        <div class="project-card" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">IoT Smart Building</h3>
+          <p>Implementasi sistem IoT untuk gedung cerdas dengan monitoring energi dan keamanan.</p>
+          <p style="font-size: 0.9rem; color: #80deea;">Teknologi: IoT Sensors, AI Analytics</p>
+        </div>
+      </div>
+    </section>
+    <section id="testimonials">
+      <h2>Testimoni Klien</h2>
+      <p>Apa yang dikatakan klien kami tentang layanan kami.</p>
+      <div class="testimonial-slider" style="max-width: 800px; margin: 0 auto; position: relative;">
+        <div class="testimonial" style="background: rgba(0, 188, 212, 0.1); padding: 2rem; border-radius: 10px; border: 1px solid #00bcd4; text-align: center;">
+          <p style="font-style: italic; margin-bottom: 1rem;">"PT. NETSOLUSI TEKNOLOGI telah membantu kami mentransformasi infrastruktur IT dengan solusi yang inovatif dan handal. Tim mereka sangat profesional dan responsif."</p>
+          <p style="font-weight: bold; color: #00e5ff;">- Budi Santoso, CTO PT. Maju Bersama</p>
+        </div>
+        <div class="testimonial" style="background: rgba(0, 188, 212, 0.1); padding: 2rem; border-radius: 10px; border: 1px solid #00bcd4; text-align: center; display: none;">
+          <p style="font-style: italic; margin-bottom: 1rem;">"Layanan keamanan siber mereka luar biasa. Kami merasa aman dengan proteksi data yang diberikan."</p>
+          <p style="font-weight: bold; color: #00e5ff;">- Siti Aminah, CIO Bank Indonesia</p>
+        </div>
+        <div class="testimonial" style="background: rgba(0, 188, 212, 0.1); padding: 2rem; border-radius: 10px; border: 1px solid #00bcd4; text-align: center; display: none;">
+          <p style="font-style: italic; margin-bottom: 1rem;">"Dukungan 24/7 mereka sangat membantu. Setiap masalah teknis selalu teratasi dengan cepat."</p>
+          <p style="font-weight: bold; color: #00e5ff;">- Ahmad Rahman, IT Manager RS Harapan Kita</p>
+        </div>
+        <button class="slider-btn prev" style="position: absolute; left: -50px; top: 50%; transform: translateY(-50%); background: #00e5ff; color: #001f2f; border: none; padding: 0.5rem; border-radius: 50%; cursor: pointer;">&#10094;</button>
+        <button class="slider-btn next" style="position: absolute; right: -50px; top: 50%; transform: translateY(-50%); background: #00e5ff; color: #001f2f; border: none; padding: 0.5rem; border-radius: 50%; cursor: pointer;">&#10095;</button>
+      </div>
+    </section>
+    <section id="news">
+      <h2>Berita & Artikel</h2>
+      <p>Update terbaru dari dunia teknologi dan berita perusahaan kami.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+        <div class="news-card" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; transition: transform 0.3s ease;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Transformasi Digital di Era 5G</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">Pelajari bagaimana teknologi 5G mempengaruhi bisnis dan infrastruktur IT modern.</p>
+          <span style="color: #80deea; font-size: 0.8rem;">15 Oktober 2023</span>
+        </div>
+        <div class="news-card" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; transition: transform 0.3s ease;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Keamanan AI dalam Bisnis</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">Tips dan strategi untuk mengamankan implementasi AI di perusahaan Anda.</p>
+          <span style="color: #80deea; font-size: 0.8rem;">22 September 2023</span>
+        </div>
+        <div class="news-card" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; transition: transform 0.3s ease;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Peluncuran Layanan Cloud Baru</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">Kami meluncurkan layanan cloud hybrid terbaru dengan fitur keamanan advanced.</p>
+          <span style="color: #80deea; font-size: 0.8rem;">5 September 2023</span>
+        </div>
+      </div>
+    </section>
+    <section id="career">
+      <h2>Karir Bersama Kami</h2>
+      <p>Bergabunglah dengan tim profesional kami dan berkontribusi pada inovasi teknologi.</p>
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="job-listing" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; margin-bottom: 1rem;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Network Engineer</h3>
+          <p>Posisi untuk insinyur jaringan dengan pengalaman minimal 3 tahun. Sertifikasi Cisco disarankan.</p>
+          <a href="lamar.html" class="btn" style="margin-top: 1rem;">Lamar Sekarang</a>
+        </div>
+        <div class="job-listing" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; margin-bottom: 1rem;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Cybersecurity Specialist</h3>
+          <p>Spesialis keamanan siber untuk melindungi infrastruktur klien dari ancaman digital.</p>
+          <a href="cybersecurity-specialist.html" class="btn" style="margin-top: 0.5rem;">Detail Pekerjaan</a>
+          <a href="lamar.html" class="btn" style="margin-top: 0.5rem;">Lamar Sekarang</a>
+        </div>
+        <div class="job-listing" style="background: rgba(0, 188, 212, 0.1); padding: 1.5rem; border-radius: 10px; border: 1px solid #00bcd4; margin-bottom: 1rem;">
+          <h3 style="color: #00e5ff; margin-bottom: 0.5rem;">Cloud Architect</h3>
+          <p>Arsitek cloud untuk merancang solusi cloud scalable dan aman.</p>
+          <a href="cloud-architect.html" class="btn" style="margin-top: 0.5rem;">Detail Pekerjaan</a>
+          <a href="lamar.html" class="btn" style="margin-top: 0.5rem;">Lamar Sekarang</a>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Kontak Kami</h2>
+      <p>Hubungi kami untuk informasi lebih lanjut dan konsultasi. Kami siap membantu Anda dengan solusi IT terbaik.</p>
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form id="contactForm" style="display: flex; flex-direction: column; gap: 1rem;">
+          <input type="text" id="name" placeholder="Nama Lengkap" required style="padding: 0.75rem; border: 1px solid #00bcd4; border-radius: 5px; background: #022f44; color: #e0f7fa; font-size: 1rem;">
+          <input type="email" id="email" placeholder="Email" required style="padding: 0.75rem; border: 1px solid #00bcd4; border-radius: 5px; background: #022f44; color: #e0f7fa; font-size: 1rem;">
+          <input type="tel" id="phone" placeholder="Nomor Telepon" style="padding: 0.75rem; border: 1px solid #00bcd4; border-radius: 5px; background: #022f44; color: #e0f7fa; font-size: 1rem;">
+          <textarea id="message" placeholder="Pesan Anda" rows="5" required style="padding: 0.75rem; border: 1px solid #00bcd4; border-radius: 5px; background: #022f44; color: #e0f7fa; font-size: 1rem; resize: vertical;"></textarea>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+        <div style="margin-top: 2rem; text-align: center;">
+          <p><strong>Email:</strong> PTfadli@gmail.com</p>
+          <p><strong>Telepon:</strong> +62 21 1234 5678</p>
+          <p><strong>Alamat:</strong> SMKN 3 BATAM</p>
+          <p><strong>Jam Kerja:</strong> Senin - Jumat, 08:00 - 17:00 WIB</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="social-links">
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2023 PT. NETSOLUSI TEKNOLOGI. All rights reserved.</p>
+    <p>Transformasi Digital untuk Masa Depan yang Lebih Baik</p>
+  </footer>
+  <script>
+    // Smooth scroll and section activation
+    const links = document.querySelectorAll('nav ul li a');
+    const sections = document.querySelectorAll('main section');
+
+    function activateSection(id) {
+      sections.forEach(section => {
+        if(section.id === id) {
+          section.classList.add('active');
+          section.scrollIntoView({behavior: 'smooth'});
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.getAttribute('data-target');
+        activateSection(target);
+        // Update active class on menu items
+        links.forEach(l => l.parentElement.classList.remove('active'));
+        link.parentElement.classList.add('active');
+      });
+    });
+
+    // Open company profile page in new tab on button click
+    const learnMoreBtn = document.getElementById('learnMoreBtn');
+    learnMoreBtn.addEventListener('click', () => {
+      window.open('company-profile.html', '_blank');
+    });
+
+    // Handle contact form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      alert(`Terima kasih ${name}! Pesan Anda telah dikirim. Kami akan menghubungi Anda segera di ${email}.`);
+      contactForm.reset();
+    });
+
+    // Testimonial slider functionality
+    const testimonials = document.querySelectorAll('.testimonial');
+    const prevBtn = document.querySelector('.slider-btn.prev');
+    const nextBtn = document.querySelector('.slider-btn.next');
+    let currentTestimonial = 0;
+
+    function showTestimonial(index) {
+      testimonials.forEach((testimonial, i) => {
+        testimonial.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    });
+
+    // Auto slide testimonials every 5 seconds
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }, 5000);
+  </script>
+</body>
+</html>
