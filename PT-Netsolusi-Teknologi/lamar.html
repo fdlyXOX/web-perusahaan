@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lamar Pekerjaan - PT. NETSOLUSI TEKNOLOGI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a1f2f;
+      color: #e0f7fa;
+      line-height: 1.6;
+    }
+    header {
+      background: #022f44;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #00e5ff;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: #00e5ff;
+      margin-bottom: 1rem;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: rgba(0, 188, 212, 0.1);
+      border-radius: 10px;
+      border: 1px solid #00bcd4;
+    }
+    h1, h2 {
+      color: #00e5ff;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 1px solid #00bcd4;
+      padding-bottom: 0.5rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      color: #b2ebf2;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea, select {
+      padding: 0.75rem;
+      border: 1px solid #00bcd4;
+      border-radius: 5px;
+      background: #022f44;
+      color: #e0f7fa;
+      font-size: 1rem;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #80deea;
+    }
+    button {
+      background: #00e5ff;
+      color: #001f2f;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00e5ff;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #00bcd4;
+      box-shadow: 0 0 25px #00bcd4;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #00e5ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #022f44;
+      padding: 1rem;
+      text-align: center;
+      border-top: 2px solid #00e5ff;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PT. NETSOLUSI TEKNOLOGI</div>
+    <h1>Formulir Lamaran Pekerjaan</h1>
+  </header>
+  <main>
+    <section id="application-form">
+      <h2>Informasi Pribadi</h2>
+      <form id="jobApplicationForm">
+        <input type="text" id="fullName" placeholder="Nama Lengkap" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Nomor Telepon" required>
+        <input type="text" id="address" placeholder="Alamat" required>
+        <input type="date" id="birthDate" required>
+        <select id="position" required>
+          <option value="">Pilih Posisi yang Dilamar</option>
+          <option value="network-engineer">Network Engineer</option>
+          <option value="cybersecurity-specialist">Cybersecurity Specialist</option>
+          <option value="cloud-architect">Cloud Architect</option>
+        </select>
+        <textarea id="experience" placeholder="Pengalaman Kerja (Deskripsikan pengalaman Anda)" rows="5" required></textarea>
+        <textarea id="education" placeholder="Pendidikan (Jelaskan latar belakang pendidikan Anda)" rows="3" required></textarea>
+        <textarea id="skills" placeholder="Keahlian (Sebutkan keahlian teknis yang Anda miliki)" rows="3" required></textarea>
+        <textarea id="whyApply" placeholder="Mengapa Anda ingin bergabung dengan PT. NETSOLUSI TEKNOLOGI?" rows="4" required></textarea>
+        <input type="file" id="cv" accept=".pdf,.doc,.docx" required>
+        <button type="submit">Kirim Lamaran</button>
+      </form>
+    </section>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Halaman Utama</a>
+  </main>
+  <footer>
+    <p>&copy; 2023 PT. NETSOLUSI TEKNOLOGI. All rights reserved.</p>
+  </footer>
+  <script>
+    const jobApplicationForm = document.getElementById('jobApplicationForm');
+    jobApplicationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fullName = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      const position = document.getElementById('position').value;
+      alert(`Terima kasih ${fullName}! Lamaran Anda untuk posisi ${position} telah dikirim. Kami akan menghubungi Anda segera di ${email}.`);
+      jobApplicationForm.reset();
+    });
+  </script>
+</body>
+</html>
